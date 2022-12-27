@@ -1,0 +1,9 @@
+project:
+  output-dir: _docs
+
+website:
+  title: "nbdev-poc"
+  site-url: "https://UpstatePedro.github.io/nbdev-poc"
+  description: "Taking NBDev for a joyride"
+  repo-branch: main
+  repo-url: "https://github.com/UpstatePedro/nbdev-poc"
