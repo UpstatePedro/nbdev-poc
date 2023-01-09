@@ -1,0 +1,8 @@
+website:
+  sidebar:
+    contents:
+      - index.ipynb
+      - 00_core.ipynb
+      - add_notebooks.ipynb
+      - docs_structure.ipynb
+      - dep_mgmt.ipynb
