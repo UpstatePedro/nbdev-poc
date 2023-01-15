@@ -1,0 +1,44 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "nbdev-poc",
+    "section": "",
+    "text": "Here’s some introductory text.\nThis project is an exploration of the nbdev development experience. My goal is to understand and document how best to work with nbdev…. by working with nbdev. By the time I’m finished here, I should be able to get up and running with a new project quickly, with published how-to’s for all the gotchas and non-obvious tricks to doing what I’d need to do in order to use nbdev in a more production-like environment.\nThings I want to check out:\n\nWhat do I need to remember each time I author a new notebook?\nStructuring of the docs pages: didn’t see anything in the tutorial, so how is this done?\nDependency management for the project: conda & pip\nEditing code for modules - can a single notebook push code to two different modules?\nTwo way sync?? I can edit the module and it will reflect in the notebook?!\nInclusion/exclusion of notebook content in the docs\nDocstrings and how they’re included in the docs\nRunning tests => only from notebooks or from modules too? Export test code to a module?\nPackaging & pushing to pypi or conda"
+  },
+  {
+    "objectID": "index.html#install",
+    "href": "index.html#install",
+    "title": "nbdev-poc",
+    "section": "Install",
+    "text": "Install\npip install nbdev_poc"
+  },
+  {
+    "objectID": "docs_structure.html",
+    "href": "docs_structure.html",
+    "title": "Structuring the Docs website",
+    "section": "",
+    "text": "Turns out this one is pretty simple: docs are included in the website according to the list maintained in nbs/sidebar.yml.\n\nThe overall structure of the auto-generated website is driven from nbs/_quarto.yml.\nThe structure of the navigation links is farmed out to a separate file called nbs/sidebar.yml which is automatically created by nbdev.\n\nAn example of the sidebar.yml taken from the nbdev repo:\nsidebar:\n    style: floating\n    contents:\n    - auto: \"/*.ipynb\"\n    - section: Tutorials\n    contents: tutorials/*\n    - section: Explanations\n    contents: explanations/*\nHere, the content of each section is determined by the contents of a folder.\nInside each folder, there is a file called index.qmd which defines which folder content is converted into links & website content.\nThe contents of the file look like this:\n---\norder: 1\ntitle: Tutorials\nlisting:\n  fields: [title, description]\n  type: table\n  sort-ui: false\n  filter-ui: false\n---\n\nClick through to any of these tutorials to get started with nbdev's features.\n\nAs shown above, each section title creates a table of all notebooks in the folder.\nThe index.qmd metadata states that the index page has order = 1, meaning it appears on the landing page for the section.\nAll notebooks in the folder have a metadata property in their first cell which tells quarto which position the notebook will appear in that section.\n\n# Page title\n\n> A catchy sub-title\n\n- order: 9"
+  },
+  {
+    "objectID": "core.html",
+    "href": "core.html",
+    "title": "core",
+    "section": "",
+    "text": "source\n\nfoo\n\n foo ()"
+  },
+  {
+    "objectID": "dep_mgmt.html",
+    "href": "dep_mgmt.html",
+    "title": "Dependency management in nbdev",
+    "section": "",
+    "text": "Are the nbdev cells needed here?\nDependency mgmt appears to be one of the missing links for nbdev: whilst it’s probably possible to everything you’ll need to, it’s certainly not as polished as many other parts of the developer experience. Moreover, nbdev’s python packaging infrastructure relies on the outdated setup.py, rather than pyproject.toml.\nProject dependencies are expected to be listed in the settings.ini file. There are several properties from which the project/package dependencies can be populated.\n\nrequirements: project requirements listed in white-space separated format\npip_requirements: requirements provided only to pip (?, but conda environment.yaml also has a pip section… which is this for?)\nconda_requirements: requirements provided only to conda (presumably for OS dependencies etc.)\ndev_requirements: developer-requirements for the project\n\nrequirements and pip_requirements are read by setup.py to build the environment for the pypi package. requirements and conda_requirements are read by ? to build the environment for the conda package.\nThe documentation page for triggering releases is the closest I can find to a page that documents how environments are to be managed / kept in sync."
+  },
+  {
+    "objectID": "add_notebooks.html",
+    "href": "add_notebooks.html",
+    "title": "Authoring notebooks",
+    "section": "",
+    "text": "1. Create the notebook in the /nbs folder\n\n\n2. Add nbdev cells to the notebook\n#| hide\nfrom nbdev_poc.core import *\n\n\n3. Add the notebook to the contents for publication\nAdd the notebook path to one of the quarto yaml files so nbdev knows it needs to render that page on the (docs) site."
+  }
+]
