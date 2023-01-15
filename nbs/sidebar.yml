@@ -1,8 +1,17 @@
 website:
   sidebar:
+
     contents:
       - index.ipynb
-      - 00_core.ipynb
-      - add_notebooks.ipynb
-      - docs_structure.ipynb
-      - dep_mgmt.ipynb
+      - section: Core module
+        contents:
+          - 00_core.ipynb
+      - section: Adding notebooks to a project
+        contents:
+          - add_notebooks.ipynb
+      - section: Structuring documents in the docs site
+        contents:
+          - docs_structure.ipynb
+      - section: Dependency management
+        contents:
+          - dep_mgmt.ipynb
